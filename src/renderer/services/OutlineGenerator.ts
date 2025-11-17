@@ -9,7 +9,9 @@ export class OutlineGenerator {
   }
 
   async refineOutline(original: NovelOutline, feedback: string): Promise<NovelOutline> {
-    const refinedPremise = await this.llm.polishChapter(`${original.premise}\nFeedback:${feedback}`);
+    const refinedPremise = await this.llm.polishChapter(
+      `${original.premise}\nFeedback:${feedback}`
+    );
     return { ...original, premise: refinedPremise };
   }
 

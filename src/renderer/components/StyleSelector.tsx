@@ -15,7 +15,7 @@ const StyleSelector: React.FC<Props> = ({ value, onChange }) => {
         <Palette size={16} /> 写作风格
       </div>
       <div className="flex flex-wrap gap-2">
-        {styles.map((style) => (
+        {styles.map(style => (
           <button
             key={style}
             onClick={() => onChange(style)}

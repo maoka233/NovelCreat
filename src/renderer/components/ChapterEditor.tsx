@@ -16,10 +16,10 @@ const ChapterEditor: React.FC<Props> = ({ activeIndex }) => {
   const [draft, setDraft] = useState('');
   const [loading, setLoading] = useState(false);
 
-  const chapter = useMemo(() => (activeIndex !== null ? chapters[activeIndex] : null), [
-    activeIndex,
-    chapters
-  ]);
+  const chapter = useMemo(
+    () => (activeIndex !== null ? chapters[activeIndex] : null),
+    [activeIndex, chapters]
+  );
 
   useEffect(() => {
     setDraft(chapter?.content || '');
@@ -96,7 +96,7 @@ const ChapterEditor: React.FC<Props> = ({ activeIndex }) => {
       </div>
       <textarea
         value={draft}
-        onChange={(e) => {
+        onChange={e => {
           setDraft(e.target.value);
           updateChapter(e.target.value);
         }}

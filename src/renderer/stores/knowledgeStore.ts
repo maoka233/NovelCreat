@@ -7,7 +7,7 @@ interface KnowledgeState extends KnowledgeBase {
   setChapters: (chapters: Chapter[]) => void;
 }
 
-export const useKnowledgeStore = create<KnowledgeState>((set) => ({
+export const useKnowledgeStore = create<KnowledgeState>(set => ({
   outline: null,
   characterCards: [],
   worldSettings: [],
@@ -15,6 +15,6 @@ export const useKnowledgeStore = create<KnowledgeState>((set) => ({
   plotPoints: [],
   consistencyRules: [],
   chapters: [],
-  setOutline: (outline) => set({ outline }),
-  setChapters: (chapters) => set({ chapters })
+  setOutline: outline => set({ outline }),
+  setChapters: chapters => set({ chapters })
 }));
