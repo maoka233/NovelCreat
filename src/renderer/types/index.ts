@@ -83,3 +83,76 @@ export interface GeneratedContent {
   title: string;
   body: string;
 }
+
+// Novel type for complete novel information
+export interface Novel {
+  id: string;
+  title: string;
+  author: string;
+  genre: string;
+  description: string;
+  chapters: Chapter[];
+  outline?: NovelOutline;
+  createdAt: Date;
+  updatedAt: Date;
+  wordCount: number;
+  status: 'draft' | 'writing' | 'completed';
+}
+
+// AI Request types
+export interface AIRequest {
+  prompt: string;
+  context?: GenerationContext;
+  maxTokens?: number;
+  temperature?: number;
+  stream?: boolean;
+}
+
+export interface AIStreamChunk {
+  content: string;
+  done: boolean;
+}
+
+// AI Response types
+export interface AIResponse {
+  content: string;
+  tokenUsage: {
+    prompt: number;
+    completion: number;
+    total: number;
+  };
+  model: string;
+  finishReason: 'stop' | 'length' | 'error';
+}
+
+export interface AIError {
+  code: string;
+  message: string;
+  details?: unknown;
+}
+
+// Export formats
+export type ExportFormat = 'txt' | 'markdown' | 'html' | 'pdf';
+
+export interface ExportOptions {
+  format: ExportFormat;
+  includeOutline?: boolean;
+  includeMetadata?: boolean;
+  chapterSeparator?: string;
+}
+
+// Backup types
+export interface Backup {
+  id: string;
+  timestamp: Date;
+  name: string;
+  size: number;
+  novelData: Novel;
+}
+
+export interface BackupMetadata {
+  id: string;
+  timestamp: Date;
+  name: string;
+  size: number;
+}
