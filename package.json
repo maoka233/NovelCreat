@@ -14,16 +14,13 @@
   },
   "homepage": "https://github.com/maoka233/NovelCreat#readme",
   "scripts": {
-    "dev": "concurrently \"vite dev\" \"npm:electron:dev\"",
-    "electron:dev": "wait-on http://localhost:5173 && cross-env VITE_DEV_SERVER_URL=http://localhost:5173 electron .",
+    "dev": "concurrently \"vite dev\" \"npm:electron:watch\" \"npm:electron:dev\"",
+    "electron:watch": "tsc -p tsconfig.electron.json --watch",
+    "electron:dev": "wait-on http://localhost:5173 dist-electron/main/index.js && cross-env VITE_DEV_SERVER_URL=http://localhost:5173 electron .",
     "build": "vite build && npm run electron:build",
     "electron:build": "tsc -p tsconfig.electron.json && electron-builder",
     "lint": "eslint --ext .ts,.tsx src",
-    "typecheck": "tsc --noEmit",
-    "format": "prettier --write \"src/**/*.{ts,tsx,css}\"",
-    "format:check": "prettier --check \"src/**/*.{ts,tsx,css}\"",
-    "prepare": "husky install",
-    "test": "echo \"No tests yet\" && exit 0"
+    "typecheck": "tsc --noEmit"
   },
   "dependencies": {
     "lucide-react": "^0.452.0",
