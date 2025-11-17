@@ -5,3 +5,17 @@ dist-electron
 .DS_Store
 .idea
 .vscode
+
+# Environment variables
+.env
+.env.local
+
+# Temporary files
+*.tmp
+.cache
+
+# Build artifacts
+*.tsbuildinfo
+
+# OS files
+Thumbs.db
