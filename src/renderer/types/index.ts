@@ -72,6 +72,8 @@ export interface GenerationContext {
   coreContext: string;
   dynamicContext: string;
   tokenBudget: number;
+  // 新增：当前章节索引，供 DeepSeekService 生成标题等使用
+  currentChapterIndex: number;
 }
 
 export interface ValidationResult {
@@ -99,12 +101,25 @@ export interface Novel {
   status: 'draft' | 'writing' | 'completed';
 }
 
+// 写作风格类型，DeepSeekService 会用到
+export type WritingStyle = string;
+
 // AI Request types
 export interface AIRequest {
   prompt: string;
   context?: GenerationContext;
+
+  // 旧字段（文档中的示例用法）
   maxTokens?: number;
+
+  // 现在 DeepSeekService.callApi / callApiStream 实际使用的字段
+  model?: string;
+  max_tokens?: number;
   temperature?: number;
+  top_p?: number;
+  frequency_penalty?: number;
+  presence_penalty?: number;
+
   stream?: boolean;
 }
 

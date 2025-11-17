@@ -26,7 +26,9 @@ export class ContextManager {
     return {
       coreContext: compressed.core,
       dynamicContext: compressed.dynamic,
-      tokenBudget: 1600
+      tokenBudget: 1600,
+      // 关键：把当前章节索引带到上下文里
+      currentChapterIndex
     };
   }
 
