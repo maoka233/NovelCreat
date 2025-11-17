@@ -1,6 +1,11 @@
 import { app, BrowserWindow, ipcMain } from 'electron';
-import path from 'path';
+import path from 'path'; // <- path 已经在这里了
 import fs from 'fs';
+import dotenv from 'dotenv'; // <-- 导入 dotenv
+
+// 明确地从项目根目录加载 .env 文件
+// (__dirname 会指向 dist-electron/main, 所以我们上溯两层)
+dotenv.config({ path: path.resolve(__dirname, '..', '..', '.env') });
 
 const isDev = process.env.VITE_DEV_SERVER_URL !== undefined;
 

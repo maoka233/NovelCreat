@@ -12,17 +12,22 @@ interface EnvConfig {
 /**
  * Get environment variable with fallback
  */
-function getEnv(key: string, defaultValue = ''): string {
-  // In Electron, environment variables are available via process.env
-  if (typeof process !== 'undefined' && process.env) {
-    return process.env[key] || defaultValue;
+function getEnv(key: keyof typeof envConfig, defaultValue = ''): string {
+  if (window.novelAPI && window.novelAPI.env) {
+    // 确保我们只访问 'env' 接口中定义的键
+    const typedKey = key as keyof typeof window.novelAPI.env;
+    return window.novelAPI.env[typedKey] || defaultValue;
   }
   return defaultValue;
 }
-
 /**
  * Environment configuration object
  */
+const envConfig = {
+  DEEPSEEK_API_KEY: '',
+  DEEPSEEK_API_BASE_URL: 'https://api.deepseek.com',
+  NODE_ENV: 'development'
+};
 export const env: EnvConfig = {
   DEEPSEEK_API_KEY: getEnv('DEEPSEEK_API_KEY', ''),
   DEEPSEEK_API_BASE_URL: getEnv('DEEPSEEK_API_BASE_URL', 'https://api.deepseek.com'),
