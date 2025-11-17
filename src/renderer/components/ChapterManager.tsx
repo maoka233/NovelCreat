@@ -10,7 +10,11 @@ const ChapterManager: React.FC<Props> = ({ onSelectChapter }) => {
   const { chapters, setChapters } = useKnowledgeStore();
 
   const addChapter = () => {
-    const newChapter = { id: crypto.randomUUID(), title: `章节 ${chapters.length + 1}`, content: '' };
+    const newChapter = {
+      id: crypto.randomUUID(),
+      title: `章节 ${chapters.length + 1}`,
+      content: ''
+    };
     setChapters([...chapters, newChapter]);
     onSelectChapter(chapters.length);
   };

@@ -3,15 +3,27 @@
   "version": "0.1.0",
   "description": "AI assisted novel writing desktop app built with Electron, React, and TypeScript",
   "main": "dist-electron/main/index.js",
-  "author": "",
+  "author": "maoka233",
   "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/maoka233/NovelCreat.git"
+  },
+  "bugs": {
+    "url": "https://github.com/maoka233/NovelCreat/issues"
+  },
+  "homepage": "https://github.com/maoka233/NovelCreat#readme",
   "scripts": {
     "dev": "concurrently \"vite dev\" \"npm:electron:dev\"",
     "electron:dev": "wait-on http://localhost:5173 && cross-env VITE_DEV_SERVER_URL=http://localhost:5173 electron .",
     "build": "vite build && npm run electron:build",
     "electron:build": "tsc -p tsconfig.electron.json && electron-builder",
     "lint": "eslint --ext .ts,.tsx src",
-    "typecheck": "tsc --noEmit"
+    "typecheck": "tsc --noEmit",
+    "format": "prettier --write \"src/**/*.{ts,tsx,css}\"",
+    "format:check": "prettier --check \"src/**/*.{ts,tsx,css}\"",
+    "prepare": "husky install",
+    "test": "echo \"No tests yet\" && exit 0"
   },
   "dependencies": {
     "lucide-react": "^0.452.0",
@@ -25,16 +37,20 @@
     "@types/node": "^22.5.4",
     "@types/react": "^18.3.8",
     "@types/react-dom": "^18.3.0",
+    "@typescript-eslint/eslint-plugin": "^6.21.0",
+    "@typescript-eslint/parser": "^6.21.0",
     "@vitejs/plugin-react": "^4.3.3",
     "autoprefixer": "^10.4.19",
     "concurrently": "^8.2.2",
     "cross-env": "^7.0.3",
     "electron": "^31.3.0",
     "electron-builder": "^24.13.3",
-    "eslint": "^9.9.1",
+    "eslint": "^8.56.0",
     "eslint-config-prettier": "^9.1.0",
     "eslint-plugin-react-hooks": "^5.1.0",
     "eslint-plugin-react-refresh": "^0.4.11",
+    "husky": "^8.0.3",
+    "lint-staged": "^15.2.0",
     "postcss": "^8.4.47",
     "prettier": "^3.3.3",
     "tailwindcss": "^3.4.10",

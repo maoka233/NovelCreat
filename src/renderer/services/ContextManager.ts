@@ -36,21 +36,21 @@ export class ContextManager {
       ? `${outline.title}\n${outline.premise}\n${outline.worldbuilding}`
       : 'No outline yet';
     const characterText = knowledgeBase.characterCards
-      .map((c) => `${c.name} (${c.role}): ${c.traits.join(', ')}`)
+      .map(c => `${c.name} (${c.role}): ${c.traits.join(', ')}`)
       .join('\n');
     return `${outlineText}\nCharacters:\n${characterText}`;
   }
 
   private composeDynamicContext(knowledgeBase: KnowledgeBase, currentChapterIndex: number): string {
     const relevantSummaries = knowledgeBase.chapterSummaries.filter(
-      (summary) => summary.chapterIndex < currentChapterIndex
+      summary => summary.chapterIndex < currentChapterIndex
     );
     const entitySet = new Set(
-      relevantSummaries.flatMap((summary) => this.extractKeyEntities(summary.summary))
+      relevantSummaries.flatMap(summary => this.extractKeyEntities(summary.summary))
     );
     const related = this.findRelatedHistory(Array.from(entitySet), knowledgeBase);
-    return `${relevantSummaries.map((s) => s.summary).join('\n')}\nRelated:${related.summaries
-      .map((s) => s.summary)
+    return `${relevantSummaries.map(s => s.summary).join('\n')}\nRelated:${related.summaries
+      .map(s => s.summary)
       .join('\n')}`;
   }
 
@@ -66,8 +66,8 @@ export class ContextManager {
   }
 
   private findRelatedHistory(entities: string[], knowledgeBase: KnowledgeBase): RelevantHistory {
-    const summaries = knowledgeBase.chapterSummaries.filter((summary) =>
-      entities.some((entity) => summary.summary.includes(entity))
+    const summaries = knowledgeBase.chapterSummaries.filter(summary =>
+      entities.some(entity => summary.summary.includes(entity))
     );
     return { summaries, extractedEntities: entities };
   }

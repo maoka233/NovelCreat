@@ -23,7 +23,9 @@ const OutlineGenerator: React.FC = () => {
   return (
     <div className="glow-card p-4 space-y-3 fade-enter">
       <div className="flex items-center justify-between">
-        <h2 className="text-lg font-semibold flex items-center gap-2"><Sparkles size={18} /> 智能大纲生成</h2>
+        <h2 className="text-lg font-semibold flex items-center gap-2">
+          <Sparkles size={18} /> 智能大纲生成
+        </h2>
         <button
           className="px-3 py-1 text-sm rounded-full bg-accent text-white hover:opacity-90 transition"
           onClick={handleGenerate}
@@ -35,14 +37,14 @@ const OutlineGenerator: React.FC = () => {
         className="w-full bg-panel/60 rounded-lg p-3 text-sm focus:outline-none border border-white/5"
         rows={3}
         value={description}
-        onChange={(e) => setDescription(e.target.value)}
+        onChange={e => setDescription(e.target.value)}
         placeholder="输入故事描述"
       />
       <div className="flex items-center gap-2">
         <input
           className="flex-1 bg-panel/60 rounded-lg p-2 text-sm border border-white/5"
           value={style}
-          onChange={(e) => setStyle(e.target.value)}
+          onChange={e => setStyle(e.target.value)}
           placeholder="写作风格"
         />
         <button
